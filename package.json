@@ -1,0 +1,27 @@
+{
+  "name": "tinyurl",
+  "version": "1.0.0",
+  "description": "Encodes long urls into sequences of five alpha-numeric digits. Reroutes encoded tiny-urls to their original counterparts. ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stephxu96/TinyURL.git"
+  },
+  "keywords": [
+    "urls"
+  ],
+  "author": "Steph Xu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stephxu96/TinyURL/issues"
+  },
+  "homepage": "https://github.com/stephxu96/TinyURL#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongodb": "^3.0.2"
+  }
+}
