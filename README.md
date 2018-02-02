@@ -20,14 +20,16 @@ Mongodb schema:
 
 Collection: "urls"
 
-'''{
+{
+
   "__id": {
     "$old": "xxxxxxxxxxx"
   },
   "longUrl": "www.facebook.com",
   "tinyuRL": "8wrsd"
+  
 }
-'''
+
 
 
 ## REST API
