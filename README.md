@@ -17,29 +17,33 @@ Accessing the tinyURL through a browser would retrieve and redirect to its origi
 ## Database 
 
 Mongodb schema:
+
 Collection: "urls"
-{
+
+'''{
   "__id": {
     "$old": "xxxxxxxxxxx"
   },
   "longUrl": "www.facebook.com",
   "tinyuRL": "8wrsd"
 }
+'''
+
 
 ## REST API
 
-url: "http://localhost:[portNum]/api"
-method: "POST"
-data: {"url": [longUrl]}
+> url: "http://localhost:[portNum]/api"
+> method: "POST"
+> data: {"url": [longUrl]}
 
 ## Test and Run
 
 From git shell or terminal, run:
 
-$ git clone https://github.com/stephxu96/TinyURL.git
-$ cd TinyURL
-$ npm install
+> $ git clone https://github.com/stephxu96/TinyURL.git
+> $ cd TinyURL
+> $ npm install
 
-$ npm run dev
+> $ npm run dev
 
 With currently specified environmental variables, the web app will run on Port 8080 at http://localhost:8080/
