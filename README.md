@@ -33,7 +33,9 @@ Collection: "urls"
 ## REST API
 
 > url: "http://localhost:[portNum]/api"
+
 > method: "POST"
+
 > data: {"url": [longUrl]}
 
 ## Test and Run
@@ -41,9 +43,17 @@ Collection: "urls"
 From git shell or terminal, run:
 
 > $ git clone https://github.com/stephxu96/TinyURL.git
+
 > $ cd TinyURL
+
 > $ npm install
+
 
 > $ npm run dev
 
 With currently specified environmental variables, the web app will run on Port 8080 at http://localhost:8080/
+
+
+## Sample url conversion
+
+www.facebook.com => http://localhost:8080/8wrsd
