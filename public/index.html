@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TinyURL Service</title>
+	<meta charset="UTF-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script src="https://cdn.rawgit.com/zenorocha/clipboard.js/master/dist/clipboard.min.js"></script>
+	<script src="ngclipboard.min.js"></script>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script>
+		var formApp = angular.module("formApp", ['ngclipboard']);
+		var tinyURL = '';
+
+		formApp.controller("formCtrl", function($scope, $http) {
+		    $scope.url = "Enter original url here";
+		    $scope.tinyUrl = "";
+		    $scope.submit = function(form) {
+		    	$scope.submitted = true;
+		    	var params = {
+		    		'url' : $scope.url
+		    	};
+		    	$http({
+		    		url: 'http://localhost:8080/api',
+		    		method: 'POST',
+		    		data: params
+		    	}).then(function (response) {
+		    		tinyURL = response.data;
+		    		$scope.tinyUrl = tinyURL;
+		    		$scope.myLink = tinyURL;
+		    	}, 
+		    	function (response) {
+		    		console.log("HTTP request failed with status code " + response.statusText);
+		    	});
+		    }
+		});
+
+		// JQuery for Bootstrap popover box
+		$(document).ready(function(){
+ 			$('[data-toggle="popover"]').popover(); 
+		});
+	</script>
+	<style>
+		.container-fluid {
+			padding-top: 50px;
+			padding-bottom: 50px;
+		}
+
+		#title {
+			color: white;
+			background-color: rgba(0, 0, 0, 0.8);
+		}
+
+		#content {
+			background-color: rgba(0, 0, 0, 0.1);
+		}
+	</style>
+</head>
+<body>
+<div class="container-fluid" id="title"><h1 class="text-center">Convert your link to a TinyURL</h1><br><br></div>
+<div class="container-fluid" id="content">
+	<div ng-app="formApp" ng-controller="formCtrl">
+	 	<form novalidate class="text-center">
+			<label>URL: &nbsp &nbsp</label><input type="text" ng-model="url">
+			<button ng-click="submit(form)" class="btn btn-default">Convert</button>
+			<br><br>
+			<p class="text-center">*Sample URL format as highlighted: https://<b>www.facebook.com</b></p>
+		</form>
+		<br><br>
+		<div class="panel panel-default">
+			<div class="panel-body">Your tinyURL is: 
+				<a ng-href="{{ myLink }}">{{ tinyUrl }}</a>
+				<button class="btn btn-default" ngclipboard data-clipboard-text="{{ tinyUrl }}" data-toggle="popover" title="tinyURL" data-content="copied!">Copy to Clipboard!</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
